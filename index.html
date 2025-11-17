@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HMWSSB - EDP SECTION - GATEPASS</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome (for icons if needed) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --accent:#0b63a8;
+  --accent-dark:#084f85;
+  --border:#0b63a8;
+  --muted:#6b7280;
+  --radius:10px;
+  --white:#ffffff;
+}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:#0b1b2b;background:linear-gradient(180deg,#f7fbff 0%, #f3f6f9 100%);padding:18px}
+.wrap{max-width:1180px;margin:0 auto;padding-bottom:60px}
+
+/* Header */
+.headerBar{
+  background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+  color:var(--white);
+  padding:12px 16px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 18px rgba(11,99,168,0.15);
+  margin-bottom:14px;
+}
+.headerBar .title{font-weight:800;font-size:18px;letter-spacing:0.6px}
+
+/* Form card styles (kept similar to original) */
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+legend{background:linear-gradient(90deg,var(--accent),var(--accent-dark));color:#fff;padding:6px 10px;border-radius:6px;font-weight:800;display:inline-block;margin-bottom:10px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px;display:block}
+input[type="text"], input[type="date"], select, textarea, input[type="file"]{width:100%;padding:9px 12px;border-radius:8px;border:1px solid var(--border);background:#fff;box-shadow:0 2px 6px rgba(11,99,168,0.06);font-size:14px}
+textarea{min-height:72px;resize:vertical}
+.span-2{grid-column:1 / -1}
+
+/* Buttons below form */
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-bottom:10px}
+.btn{padding:9px 14px;border-radius:8px;border:none;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-secondary{background:#fff;color:var(--accent);border:1px solid var(--border)}
+
+/* Preview container (A4) */
+.preview-wrap{margin-top:10px}
+.previewA4{
+  width:210mm;
+  margin:0 auto 40px;
+  background:#fff;
+  padding:10mm;
+  border:3px solid var(--accent);
+  box-shadow:0 8px 28px rgba(0,0,0,0.12);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Preview header (blue bar) */
+.preview-header{
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+  color:#fff;padding:8px 12px;border-radius:3px;margin-bottom:8px;font-weight:800;
+}
+.preview-header .title{font-size:18px}
+.preview-header .datetime{font-size:12px;min-width:160px;text-align:right}
+
+/* Table styling to match attachment */
+.previewTable{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:6px}
+.previewTable th, .previewTable td{border:1px solid #0b2f4e;padding:8px;vertical-align:top}
+.previewTable th{background:var(--accent);color:#fff;font-weight:800;text-align:center}
+.previewTable td{background:#fff}
+
+/* Larger cells for remarks */
+.big-cell{min-height:40px}
+
+/* Signature row */
+.signatureRow td{height:78px;vertical-align:bottom;padding:10px;text-align:center;font-weight:800}
+.sig-note{display:block;font-weight:600;color:var(--muted);font-size:12px;margin-top:6px}
+
+/* Make responsive on small screens */
+@media (max-width:900px){
+  .previewA4{width:100%;padding:12px}
+}
+
+/* Print rules: hide form & buttons, print only preview */
+@media print{
+  body{background:#fff;margin:0}
+  .card, .form-actions, .btn, .headerBar {display:none !important}
+  .previewA4{box-shadow:none;border:0;padding:6mm;width:190mm;margin:0 auto}
+  @page{size:A4;margin:10mm}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="headerBar">
+    <div class="title">HMWSSB - EDP SECTION - GATEPASS</div>
+  </div>
+
+  <!-- =========================
+       FULL ORIGINAL FORM (kept as requested)
+       ========================= -->
+  <fieldset class="card" id="tokenSection">
+    <legend>TOKEN DETAILS</legend>
+    <div class="form-grid">
+      <div><label>S.NO</label><input id="sno" type="text"></div>
+      <div><label>TOKEN DATE</label><input id="tokenDate" type="date"></div>
+      <div><label>TOKEN NO</label><input id="tokenNo" type="text"></div>
+      <div><label>ASSET ID</label><input id="assetId" type="text"></div>
+      <div><label>DIVISION</label><input id="division" type="text"></div>
+      <div><label>LOCATION</label><input id="location" type="text"></div>
+      <div><label>USER NAME</label><input id="userName" type="text"></div>
+      <div><label>PHONE NO</label><input id="phoneNo" type="text"></div>
+    </div>
+  </fieldset>
+
+  <fieldset class="card" id="defectiveSection">
+    <legend>DEFECTIVE DETAILS</legend>
+    <div class="form-grid">
+      <div>
+        <label>ASSET</label>
+        <select id="defAsset" onchange="handleAssetChange('def')">
+          <option value="">--select--</option>
+          <option>KEYBOARD</option><option>MOUSE</option><option>MONITOR</option>
+          <option>UPS</option><option>PRINTER</option><option>SCANNER</option>
+          <option>CABLE</option><option>CPU</option>
+        </select>
+      </div>
+
+      <div id="defSubAssetContainer" class="hidden">
+        <label>CPU SUB-ITEM</label>
+        <select id="defSubAsset" onchange="handleCpuSubChange('def')">
+          <option value="">--select--</option>
+          <option>MOTHERBOARD</option><option>SMPS</option><option>RAM</option>
+          <option>CMOS BATTERY</option><option>LAN-ADAPTER</option>
+          <option>HDD</option><option>SSD</option><option>OS INSTALLED</option><option>OTHER</option>
+        </select>
+      </div>
+
+      <div id="defExtraFields" class="span-2 hidden"></div>
+
+      <div><label>MAKE</label><input id="defMake" type="text"></div>
+      <div><label>MODEL</label><input id="defModel" type="text"></div>
+      <div><label>S.NO</label><input id="defSno" type="text"></div>
+
+      <div>
+        <label>DEFECTIVE - SUBMITTED</label>
+        <select id="defSubmitted" onchange="handleDefSubmitted()">
+          <option value="">--select--</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div id="defReasonContainer" class="span-2 hidden">
+        <label>IF "NO" REASON</label>
+        <input id="defReason" type="text">
+      </div>
+
+      <div class="span-2"><label>REMARKS</label><textarea id="defRemark"></textarea></div>
+      <div class="span-2"><label>Attach Image</label><input id="defImage" type="file" accept="image/*"></div>
+    </div>
+  </fieldset>
+
+  <fieldset class="card" id="replacementSection">
+    <legend>REPLACEMENT DETAILS</legend>
+    <div class="form-grid">
+      <div>
+        <label>ASSET</label>
+        <select id="repAsset" onchange="handleAssetChange('rep')">
+          <option value="">--select--</option>
+          <option>KEYBOARD</option><option>MOUSE</option><option>MONITOR</option>
+          <option>UPS</option><option>PRINTER</option><option>SCANNER</option>
+          <option>CABLE</option><option>CPU</option>
+        </select>
+      </div>
+
+      <div id="repSubAssetContainer" class="hidden">
+        <label>CPU SUB-ITEM</label>
+        <select id="repSubAsset" onchange="handleCpuSubChange('rep')">
+          <option value="">--select--</option>
+          <option>MOTHERBOARD</option><option>SMPS</option><option>RAM</option>
+          <option>CMOS BATTERY</option><option>LAN-ADAPTER</option>
+          <option>HDD</option><option>SSD</option><option>OS INSTALLED</option><option>OTHER</option>
+        </select>
+      </div>
+
+      <div id="repExtraFields" class="span-2 hidden"></div>
+
+      <div><label>MAKE</label><input id="repMake" type="text"></div>
+      <div><label>MODEL</label><input id="repModel" type="text"></div>
+      <div><label>S.NO</label><input id="repSno" type="text"></div>
+
+      <div>
+        <label>REPLACED</label>
+        <select id="repType">
+          <option value="">--select--</option>
+          <option>NEW</option>
+          <option>STANDBY</option>
+        </select>
+      </div>
+
+      <div class="span-2"><label>REMARKS</label><textarea id="repRemark"></textarea></div>
+      <div class="span-2"><label>Attach Image</label><input id="repImage" type="file" accept="image/*"></div>
+    </div>
+  </fieldset>
+
+  <fieldset class="card">
+    <legend>REMARKS & SIGNATURES</legend>
+    <label>REMARKS</label>
+    <textarea id="remarks"></textarea>
+    <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:170px;border:1.5px dashed var(--border);padding:12px;border-radius:8px;text-align:center">Manager Approval <small style="display:block;margin-top:8px;color:var(--muted)">NAME & SIG</small></div>
+      <div style="flex:1;min-width:170px;border:1.5px dashed var(--border);padding:12px;border-radius:8px;text-align:center">Field Engineer <small style="display:block;margin-top:8px;color:var(--muted)">NAME & SIG</small></div>
+      <div style="flex:1;min-width:170px;border:1.5px dashed var(--border);padding:12px;border-radius:8px;text-align:center">User Acknowledgement <small style="display:block;margin-top:8px;color:var(--muted)">NAME & SIG</small></div>
+    </div>
+  </fieldset>
+
+  <!-- Buttons below bottom of the form (as requested) -->
+  <div class="form-actions">
+    <button id="generateCsvBtn" class="btn btn-secondary">Generate CSV</button>
+    <button id="generatePdfBtn" class="btn btn-primary">Generate PDF</button>
+  </div>
+
+  <!-- =========================
+       LIVE PREVIEW (visible by default)
+       ========================= -->
+  <div class="preview-wrap">
+    <div class="previewA4" id="previewA4">
+      <div class="preview-header">
+        <div class="title">HMWSSB - EDP SECTION - GATEPASS</div>
+        <div class="datetime" id="previewDateTime">DATE/TIME:</div>
+      </div>
+
+      <!-- TOKEN DETAILS -->
+      <div style="font-weight:800;margin-bottom:6px;color:#0b2f4e">TOKEN DETAILS :</div>
+      <table class="previewTable">
+        <thead>
+          <tr>
+            <th style="width:7%">S.NO</th>
+            <th style="width:12%">TOKEN-DATE</th>
+            <th style="width:12%">TOKEN-NO</th>
+            <th style="width:12%">ASSET-ID</th>
+            <th style="width:12%">DIVISION</th>
+            <th style="width:16%">LOCATION</th>
+            <th style="width:16%">USER NAME</th>
+            <th style="width:13%">PHONE-NO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="pv_sno"></td>
+            <td id="pv_tokenDate"></td>
+            <td id="pv_tokenNo"></td>
+            <td id="pv_assetId"></td>
+            <td id="pv_division"></td>
+            <td id="pv_location"></td>
+            <td id="pv_userName"></td>
+            <td id="pv_phoneNo"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- DEFECTIVE DETAILS -->
+      <div style="font-weight:800;margin-top:6px;margin-bottom:6px;color:#0b2f4e">DEFECTIVE DETAILS :</div>
+      <table class="previewTable">
+        <tbody>
+          <!-- Row: ASSET / CPU SUB-ITEM / MAKE / REMARKS (all comma-separated) -->
+          <tr><th style="width:36%">ASSET / CPU SUB-ITEM / MAKE / REMARKS</th><td id="pv_defRow1" class="big-cell"></td></tr>
+
+          <!-- Row: ADD-INFO / MODEL & S.NO -->
+          <tr><th>ADD-INFO / MODEL & S.NO</th><td id="pv_defRow2" class="big-cell"></td></tr>
+
+          <!-- Row: DEFECTIVE - SUBMITTED -->
+          <tr><th>DEFECTIVE - SUBMITTED "YES" OR "NO"</th><td id="pv_defSubmitted"></td></tr>
+
+          <!-- Row: IF "NO" REASON -->
+          <tr><th>IF "NO" REASON</th><td id="pv_defReason" class="big-cell"></td></tr>
+        </tbody>
+      </table>
+
+      <!-- REPLACEMENT DETAILS -->
+      <div style="font-weight:800;margin-top:6px;margin-bottom:6px;color:#0b2f4e">REPLACEMENT DETAILS :</div>
+      <table class="previewTable">
+        <tbody>
+          <tr><th style="width:36%">ASSET / CPU SUB-ITEM / MAKE / REMARKS</th><td id="pv_repRow1" class="big-cell"></td></tr>
+          <tr><th>ADD-INFO / MODEL & S.NO</th><td id="pv_repRow2" class="big-cell"></td></tr>
+          <tr><th>REPLACED : "NEW" OR "STANDBY"</th><td id="pv_repType"></td></tr>
+        </tbody>
+      </table>
+
+      <!-- REMARKS & SIGNATURES -->
+      <div style="font-weight:800;margin-top:6px;margin-bottom:6px;color:#0b2f4e">REMARKS & SIGNATURES :</div>
+      <table class="previewTable">
+        <tbody>
+          <tr><th style="width:18%">REMARKS :</th><td id="pv_remarks" class="big-cell"></td></tr>
+        </tbody>
+      </table>
+
+      <table class="previewTable" style="margin-top:10px">
+        <tbody>
+          <tr class="signatureRow">
+            <td><div>Manager Approval<span class="sig-note">NAME & SIG</span></div></td>
+            <td><div>Field Engineer<span class="sig-note">NAME & SIG</span></div></td>
+            <td><div>User Acknowledgement<span class="sig-note">NAME & SIG</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- html2pdf (bundle min) for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+<script>
+/* Helper */
+const $ = id => document.getElementById(id);
+
+/* Utility formatting */
+function pad(n){ return String(n).padStart(2,'0'); }
+function formatDateTime(dt){
+  const dd = pad(dt.getDate()), mm = pad(dt.getMonth()+1), yy = dt.getFullYear();
+  const hh = pad(dt.getHours()), min = pad(dt.getMinutes()), ss = pad(dt.getSeconds());
+  return dd + '-' + mm + '-' + yy + ' ' + hh + ':' + min + ':' + ss;
+}
+
+/* Update clock in preview header */
+function updatePreviewDateTime(){
+  const now = new Date();
+  $('previewDateTime').textContent = formatDateTime(now);
+}
+updatePreviewDateTime();
+setInterval(updatePreviewDateTime, 1000);
+
+/* Show/hide sub-asset and extra fields */
+function handleAssetChange(prefix){
+  const asset = $(`${prefix}Asset`)?.value || '';
+  const subWrap = $(`${prefix}SubAssetContainer`);
+  const extra = $(`${prefix}ExtraFields`);
+  if(subWrap) subWrap.classList.add('hidden');
+  if(extra) { extra.classList.add('hidden'); extra.innerHTML=''; }
+
+  if(asset === 'CPU' && subWrap) subWrap.classList.remove('hidden');
+
+  if(asset === 'CABLE' && extra){
+    extra.classList.remove('hidden');
+    extra.innerHTML = `<label>CABLE DETAILS</label><textarea id="${prefix}CableDetails" placeholder="Enter cable details"></textarea>`;
+  }
+  if(asset === 'MONITOR' && extra){
+    extra.classList.remove('hidden');
+    extra.innerHTML = `
+      <label>INCHES</label>
+      <select id="${prefix}MonitorInches" onchange="handleInchChange('${prefix}')">
+        <option value="">--select--</option>
+        <option>15 inch</option><option>17 inch</option><option>19 inch</option>
+        <option>21 inch</option><option>22 inch</option><option>24 inch</option>
+        <option>27 inch</option><option value="OTHER">OTHER</option>
+      </select>
+      <div id="${prefix}OtherInchContainer" class="hidden" style="margin-top:8px">
+        <label>Enter Inches</label><input id="${prefix}OtherInch" type="text" placeholder="Specify inches">
+      </div>
+    `;
+  }
+}
+function handleInchChange(prefix){
+  const val = $(`${prefix}MonitorInches`).value;
+  const other = $(`${prefix}OtherInchContainer`);
+  if(val === 'OTHER') other.classList.remove('hidden'); else if(other) other.classList.add('hidden');
+}
+
+/* CPU sub-item extra inputs logic */
+function handleCpuSubChange(prefix){
+  const val = $(`${prefix}SubAsset`)?.value || '';
+  const extra = $(`${prefix}ExtraFields`);
+  if(!extra) return;
+  extra.classList.add('hidden'); extra.innerHTML = '';
+  if(val === 'RAM'){
+    extra.classList.remove('hidden');
+    extra.innerHTML = `<label>RAM CAPACITY</label><input id="${prefix}RamCapacity" type="text" placeholder="e.g. 8GB">
+                       <label>NO OF STICKS</label><input id="${prefix}RamSticks" type="text" placeholder="e.g. 2">`;
+  } else if(val === 'HDD' || val === 'SSD'){
+    extra.classList.remove('hidden');
+    extra.innerHTML = `<label>STORAGE CAPACITY</label><input id="${prefix}StorageCap" type="text" placeholder="e.g. 500GB">`;
+  } else if(val === 'LAN-ADAPTER'){
+    extra.classList.remove('hidden');
+    extra.innerHTML = `<label>ADAPTER TYPE</label><input id="${prefix}LanType" type="text" placeholder="e.g. USB 2.0">`;
+  }
+}
+
+/* Defective submitted toggling */
+function handleDefSubmitted(){
+  const val = $('defSubmitted').value;
+  const rc = $('defReasonContainer');
+  if(val === 'No') rc.classList.remove('hidden'); else { rc.classList.add('hidden'); $('defReason').value = ''; }
+}
+
+/* Collect "Add-info" for a section prefix (def or rep)
+   It reads dynamic extra fields and returns a comma-separated string describing them.
+*/
+function gatherAddInfo(prefix){
+  const parts = [];
+  // monitor inches (monitor may create MonitorInches or OtherInch)
+  const monEl = $(`${prefix}MonitorInches`);
+  if(monEl && monEl.value){
+    if(monEl.value === 'OTHER'){
+      const other = $(`${prefix}OtherInch`);
+      if(other && other.value) parts.push('Monitor - ' + other.value);
+    } else {
+      parts.push('Monitor - ' + monEl.value);
+    }
+  }
+  // cable details
+  const cable = $(`${prefix}CableDetails`);
+  if(cable && cable.value) parts.push('Cable - ' + cable.value);
+
+  // RAM capacity/sticks
+  const ramCap = $(`${prefix}RamCapacity`);
+  const ramSticks = $(`${prefix}RamSticks`);
+  if(ramCap && ramCap.value){
+    const s = 'RAM - ' + ramCap.value + (ramSticks && ramSticks.value ? (' / ' + ramSticks.value + ' sticks') : '');
+    parts.push(s);
+  }
+
+  // LAN adapter type
+  const lan = $(`${prefix}LanType`);
+  if(lan && lan.value) parts.push('LAN-Adapter - ' + lan.value);
+
+  // HDD/SSD storage
+  const storage = $(`${prefix}StorageCap`);
+  if(storage && storage.value) parts.push('Storage - ' + storage.value);
+
+  // If none, return empty string
+  return parts.join(', ');
+}
+
+/* Build "ASSET / CPU SUB-ITEM / MAKE / REMARKS" row string.
+   - If Asset == CPU and subitem present -> only subitem shown (not "CPU - RAM")
+   - Values separated by comma, skip empty.
+*/
+function buildAssetRow(prefix){
+  const assetVal = $(`${prefix}Asset`)?.value || '';
+  const subVal = $(`${prefix}SubAsset`)?.value || '';
+  const make = $(`${prefix}Make`)?.value || '';
+  const remark = $(`${prefix}Remark`)?.value || '';
+  // map id names for def vs rep: defMake, defRemark / repMake, repRemark
+  const makeVal = $(`${prefix}Make`) ? $(`${prefix}Make`).value : '';
+  const remarkVal = $(`${prefix}Remark`) ? $(`${prefix}Remark`).value : '';
+  // fallback to known IDs
+  const m = $(`${prefix}Make`) ? $(`${prefix}Make`).value : ($(`${prefix}Make`) ? $(`${prefix}Make`).value : '');
+  const r = $(`${prefix}Remark`) ? $(`${prefix}Remark`).value : ($(`${prefix}Remark`) ? $(`${prefix}Remark`).value : '');
+
+  // get proper make and remark from actual IDs used in this file:
+  const makeField = $(`${prefix}Make`) || $(`${prefix}Make`) || null;
+  const makeText = makeField ? makeField.value : (prefix==='def'? $('defMake').value : $('repMake').value);
+  const remarkField = $(`${prefix}Remark`) || null;
+  const remarkText = (prefix === 'def') ? $('defRemark').value : $('repRemark').value;
+
+  let firstPart = '';
+  if(assetVal === 'CPU' && subVal){
+    firstPart = subVal;
+  } else {
+    firstPart = assetVal;
+  }
+  // Now assemble: firstPart, makeText, remarkText -> separated by comma, excluding empties
+  const arr = [];
+  if(firstPart) arr.push(firstPart);
+  if(makeText) arr.push(makeText);
+  if(remarkText) arr.push(remarkText);
+  return arr.join(', ');
+}
+
+/* Build ADD-INFO / MODEL & S.NO row:
+   Add-info from dynamic extras (gatherAddInfo), plus Model & S.No
+*/
+function buildAddInfoRow(prefix){
+  const addInfo = gatherAddInfo(prefix);
+  const model = $(`${prefix}Model`) ? $(`${prefix}Model`).value : (prefix==='def' ? $('defModel').value : $('repModel').value);
+  const sno = $(`${prefix}Sno`) ? $(`${prefix}Sno`).value : (prefix==='def' ? $('defSno').value : $('repSno').value);
+  const parts = [];
+  if(addInfo) parts.push(addInfo);
+  if(model) parts.push(model);
+  if(sno) parts.push(sno);
+  return parts.join(', ');
+}
+
+/* update preview with values from form */
+function updatePreview(){
+  // token details
+  $('pv_sno').textContent = $('sno').value || '';
+  $('pv_tokenDate').textContent = $('tokenDate').value || '';
+  $('pv_tokenNo').textContent = $('tokenNo').value || '';
+  $('pv_assetId').textContent = $('assetId').value || '';
+  $('pv_division').textContent = $('division').value || '';
+  $('pv_location').textContent = $('location').value || '';
+  $('pv_userName').textContent = $('userName').value || '';
+  $('pv_phoneNo').textContent = $('phoneNo').value || '';
+
+  // Defective rows
+  // Asset / Sub-item / Make / Remarks
+  const defAssetVal = $(`defAsset`) ? $('defAsset').value : '';
+  const defSubVal = $(`defSubAsset`) ? $('defSubAsset').value : '';
+  let defRow1 = '';
+  if(defAssetVal === 'CPU' && defSubVal) defRow1 = defSubVal;
+  else defRow1 = defAssetVal;
+  // append make and remarks
+  const defMake = $('defMake').value || '';
+  const defRemark = $('defRemark').value || '';
+  const defRow1Parts = [];
+  if(defRow1) defRow1Parts.push(defRow1);
+  if(defMake) defRow1Parts.push(defMake);
+  if(defRemark) defRow1Parts.push(defRemark);
+  $('pv_defRow1').textContent = defRow1Parts.join(', ');
+
+  // ADD-INFO / MODEL & S.NO
+  $('pv_defRow2').textContent = buildAddInfoRow('def');
+
+  // DEFECTIVE - SUBMITTED
+  const subSent = $('defSubmitted').value || '';
+  $('pv_defSubmitted').textContent = subSent;
+  // IF NO REASON => show reason; if YES => NIL
+  if(subSent.toLowerCase() === 'yes') {
+    $('pv_defReason').textContent = 'NIL';
+  } else {
+    $('pv_defReason').textContent = $('defReason').value || '';
+  }
+
+  // Replacement
+  const repAssetVal = $('repAsset').value || '';
+  const repSubVal = $('repSubAsset') ? $('repSubAsset').value : '';
+  let repRow1 = '';
+  if(repAssetVal === 'CPU' && repSubVal) repRow1 = repSubVal;
+  else repRow1 = repAssetVal;
+  const repMake = $('repMake').value || '';
+  const repRemark = $('repRemark').value || '';
+  const repParts = [];
+  if(repRow1) repParts.push(repRow1);
+  if(repMake) repParts.push(repMake);
+  if(repRemark) repParts.push(repRemark);
+  $('pv_repRow1').textContent = repParts.join(', ');
+  $('pv_repRow2').textContent = buildAddInfoRow('rep');
+  $('pv_repType').textContent = $('repType').value || '';
+
+  // REMARKS capture: sequence: defective remarks, if no reason, then replacement remark
+  // Implementation: start with defective remark; if defReason empty and repRemark present, append repRemark
+  const defR = $('defRemark').value.trim();
+  const defReason = $('defReason').value.trim();
+  const repR = $('repRemark').value.trim();
+  let combinedRemarks = '';
+  if(defR) combinedRemarks = defR;
+  if(!defReason && repR){
+    // append replacement remark if no reason (as user specified)
+    combinedRemarks = combinedRemarks ? (combinedRemarks + ', ' + repR) : repR;
+  }
+  // Also append main remarks textarea at the end (if present)
+  const mainRemarks = $('remarks').value.trim();
+  if(mainRemarks){
+    combinedRemarks = combinedRemarks ? (combinedRemarks + ', ' + mainRemarks) : mainRemarks;
+  }
+  $('pv_remarks').textContent = combinedRemarks;
+
+}
+
+/* Add event listeners for live update (inputs & changes) */
+document.addEventListener('input', (e) => {
+  if(!e.target) return;
+  // if change belongs to the form, update preview
+  updatePreview();
+});
+document.addEventListener('change', (e) => {
+  updatePreview();
+});
+
+/* Initialize preview */
+updatePreview();
+
+/* Generate CSV */
+function generateCSV(){
+  updatePreview();
+  const rows = [
+    ['S.NO', $('sno').value || ''],
+    ['TOKEN DATE', $('tokenDate').value || ''],
+    ['TOKEN NO', $('tokenNo').value || ''],
+    ['ASSET ID', $('assetId').value || ''],
+    ['DIVISION', $('division').value || ''],
+    ['LOCATION', $('location').value || ''],
+    ['USER NAME', $('userName').value || ''],
+    ['PHONE NO', $('phoneNo').value || ''],
+
+    ['DEFECTIVE - ASSET/CPU SUBITEM/MAKE/REMARKS', $('pv_defRow1').textContent || ''],
+    ['DEFECTIVE - ADD-INFO/MODEL & S.NO', $('pv_defRow2').textContent || ''],
+    ['DEFECTIVE - SUBMITTED', $('pv_defSubmitted').textContent || ''],
+    ['DEFECTIVE - IF NO REASON', $('pv_defReason').textContent || ''],
+
+    ['REPLACEMENT - ASSET/CPU SUBITEM/MAKE/REMARKS', $('pv_repRow1').textContent || ''],
+    ['REPLACEMENT - ADD-INFO/MODEL & S.NO', $('pv_repRow2').textContent || ''],
+    ['REPLACEMENT - REPLACED', $('pv_repType').textContent || ''],
+
+    ['REMARKS', $('pv_remarks').textContent || '']
+  ];
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `gatepass_${($('sno').value || 'unnumbered')}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 500);
+}
+
+/* Generate PDF using html2pdf */
+function generatePDF(){
+  updatePreview();
+  // Use html2pdf with A4 settings and keep the CSS
+  const preview = document.getElementById('previewA4');
+  const opt = {
+    margin: [10, 8, 10, 8], // mm (top, left, bottom, right)
+    filename: `gatepass_${($('sno').value || 'unnumbered')}.pdf`,
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['css', 'legacy'] }
+  };
+  // hide interactive elements if any (already controlled by CSS @media print). To be safe:
+  preview.style.boxShadow = 'none';
+  html2pdf().set(opt).from(preview).save().then(() => {
+    // restore shadow
+    preview.style.boxShadow = '';
+  }).catch(err => {
+    console.error('PDF generation failed', err);
+    preview.style.boxShadow = '';
+  });
+}
+
+/* Wired buttons */
+$('generateCsvBtn').addEventListener('click', generateCSV);
+$('generatePdfBtn').addEventListener('click', generatePDF);
+
+/* Make sure dynamic extra fields are monitored for live update (delegate) */
+document.addEventListener('input', updatePreview);
+document.addEventListener('change', updatePreview);
+
+</script>
+</body>
+</html>
